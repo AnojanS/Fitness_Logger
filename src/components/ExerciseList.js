@@ -9,7 +9,7 @@ const Exercise = props => (
     <td>{props.exercise.duration}</td>
     <td>{props.exercise.date.substring(0,10)}</td>
     <td>
-      <Link to={"/edit/"+props.exercise._id}>edit</Link> | <a href="#" onClick={() => {props.deleteExercise(props.exercise._id)}}>delete</a>
+      <Link to={"/edit/" + props.exercise._id}>edit</Link> | <a href="#" onClick={() => {props.deleteExercise(props.exercise._id)}}>delete</a>
     </td>
   </tr>
 )
@@ -24,7 +24,7 @@ export default class ExerciseList extends Component {
   componentDidMount() {
     axios.get('http://localhost:5000/exercises/')
       .then(response => {
-        this.setState({ exercises: response.data })
+        this.setState({exercises: response.data})
       })
       .catch((error) => {
         console.log(error);
@@ -33,7 +33,7 @@ export default class ExerciseList extends Component {
 
   deleteExercise(id) {
     axios.delete('http://localhost:5000/exercises/'+id)
-      .then(response => { console.log(response.data)});
+      .then(response => {console.log(response.data)});
 
     this.setState({
       exercises: this.state.exercises.filter(el => el._id !== id)
@@ -49,11 +49,11 @@ export default class ExerciseList extends Component {
   render() {
     return (
       <div>
-        <h3>Logged Exercises</h3>
+        <h3>Logged Workouts</h3>
         <table className="table">
           <thead className="thead-light">
             <tr>
-              <th>Username</th>
+              <th>User</th>
               <th>Description</th>
               <th>Duration</th>
               <th>Date</th>
